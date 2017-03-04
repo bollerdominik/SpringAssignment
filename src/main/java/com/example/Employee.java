@@ -15,13 +15,15 @@ public class Employee {
     private @Id @GeneratedValue Long id;
     private String firstName;
     private String lastName;
-    private String description;
+    public enum Days{MONDAY,TUESDAY}
+    public enum Shifts{EVENING,NIGHT}
+    private Days day;
 
     private Employee() {}
 
-    public Employee(String firstName, String lastName, String description) {
+    public Employee(String firstName, String lastName, Days day) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.description = description;
+        this.day = day;
     }
 }
