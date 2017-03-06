@@ -4,26 +4,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * Created by dubsta on 21.02.2017.
  */
 @Component
 public class DatabaseLoader implements CommandLineRunner {
 
-    private final EmployeeRepository repository;
+    private final EmployeeRepository repositoryEmp;
+    private final ShiftRepository repositoryShift;
 
     @Autowired
-    public DatabaseLoader(EmployeeRepository repository) {
-        this.repository = repository;
+    public DatabaseLoader(EmployeeRepository repositoryEmp, ShiftRepository repositoryShift) {
+        this.repositoryEmp = repositoryEmp;
+        this.repositoryShift = repositoryShift;
     }
 
     @Override
     public void run(String... strings) throws Exception {
-        this.repository.save(new Employee("Mike", "Hunt", Employee.Days.MONDAY, Employee.Shifts.EVENING));
-        this.repository.save(new Employee("Tom", "Rest", Employee.Days.TUESDAY, Employee.Shifts.NIGHT));
-        //this.repository.save(new Employee("Gandalf", "the Grey", "wizard"));
-        //this.repository.save(new Employee("Samwise", "Gamgee", "gardener"));
-        //this.repository.save(new Employee("Meriadoc", "Brandybuck", "pony rider"));
-        //this.repository.save(new Employee("Peregrin", "Took", "pipe smoker"));
+
+        Employee employeeA = new Employee("Mike","Hunt", Employee.Days.WEDNESDAY, new ArrayList<>());
+        Shift nightShift = new Shift(Shift.Shifts.EVENING,Arrays.asList(employeeA));
+        employeeA.setShifts(Arrays.asList(nightShift));
+
+        this.repositoryEmp.save(employeeA);
+        this.repositoryShift.save(nightShift);
     }
 }
