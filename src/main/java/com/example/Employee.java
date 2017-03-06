@@ -15,7 +15,7 @@ public class Employee {
     private @Id @GeneratedValue Long id;
     private String firstName;
     private String lastName;
-    public enum Days{MONDAY,TUESDAY}
+    public enum Days{MONDAY,TUESDAY, WEDNESDAY, THURSDAY, FRIDAY}
     public enum Shifts{EVENING,NIGHT}
     private Days day;
 

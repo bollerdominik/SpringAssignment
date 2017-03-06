@@ -8,6 +8,8 @@ const follow = require('./follow'); // function to hop multiple links by "rel"
 
 const root = '/api';
 
+var sTest;
+
 class App extends React.Component {
 
     constructor(props) {
@@ -30,6 +32,7 @@ class App extends React.Component {
                 headers: {'Accept': 'application/schema+json'}
             }).then(schema => {
                 this.schema = schema.entity;
+                sTest = schema.entity;
                 return employeeCollection;
             });
         }).done(employeeCollection => {
@@ -143,8 +146,9 @@ class CreateDialog extends React.Component {
             if (attribute == "day"){
                 (inputs.push(<p key={attribute}>
                     <select ref={attribute}>
-                        <option value="MONDAY">Monday</option>
-                        <option value="TUESDAY">Tuesday</option>
+                        {sTest.properties.day.enum.map(function(x){
+                            return <option value={x}>{x}</option>;
+                        })}
                     </select>
                 </p>))
             }
