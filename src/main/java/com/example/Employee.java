@@ -18,12 +18,14 @@ public class Employee {
     public enum Days{MONDAY,TUESDAY, WEDNESDAY, THURSDAY, FRIDAY}
     public enum Shifts{EVENING,NIGHT}
     private Days day;
+    private Shifts shift;
 
     private Employee() {}
 
-    public Employee(String firstName, String lastName, Days day) {
+    public Employee(String firstName, String lastName, Days day, Shifts shift) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.day = day;
+        this.shift = shift;
     }
 }

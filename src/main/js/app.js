@@ -8,7 +8,7 @@ const follow = require('./follow'); // function to hop multiple links by "rel"
 
 const root = '/api';
 
-var sTest;
+var mSchema;
 
 class App extends React.Component {
 
@@ -32,7 +32,7 @@ class App extends React.Component {
                 headers: {'Accept': 'application/schema+json'}
             }).then(schema => {
                 this.schema = schema.entity;
-                sTest = schema.entity;
+                mSchema = schema.entity;
                 return employeeCollection;
             });
         }).done(employeeCollection => {
@@ -146,12 +146,22 @@ class CreateDialog extends React.Component {
             if (attribute == "day"){
                 (inputs.push(<p key={attribute}>
                     <select ref={attribute}>
-                        {sTest.properties.day.enum.map(function(x){
+                        {mSchema.properties.day.enum.map(function(x){
                             return <option value={x}>{x}</option>;
                         })}
                     </select>
                 </p>))
             }
+            if (attribute == "shift"){
+                (inputs.push(<p key={attribute}>
+                    <select ref={attribute}>
+                        {mSchema.properties.shift.enum.map(function(x){
+                            return <option value={x}>{x}</option>;
+                        })}
+                    </select>
+                </p>))
+            }
+
             else inputs.push(<p key={attribute}>
                 <input type="text" placeholder={attribute} ref={attribute} className="field" />
             </p>)
@@ -254,6 +264,7 @@ class EmployeeList extends React.Component {
                     <tr>
                         <th>First Name</th>
                         <th>Last Name</th>
+                        <th>Shift</th>
                         <th>Day</th>
                         <th></th>
                     </tr>
@@ -286,6 +297,7 @@ class Employee extends React.Component {
             <tr>
                 <td>{this.props.employee.firstName}</td>
                 <td>{this.props.employee.lastName}</td>
+                <td>{this.props.employee.shift}</td>
                 <td>{this.props.employee.day}</td>
                 <td>
                     <button onClick={this.handleDelete}>Delete</button>
