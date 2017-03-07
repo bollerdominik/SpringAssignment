@@ -16,7 +16,7 @@ import java.util.List;
 public class Shift {
     private @Id @GeneratedValue Long id;
     private Shifts shift;
-    public enum Shifts{EVENING,NIGHT};
+    public enum Shifts{EVENING,NIGHT, MORNING};
 
     @ManyToMany(mappedBy = "shifts")
     private List<Employee> employees;
