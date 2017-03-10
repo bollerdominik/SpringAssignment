@@ -4,19 +4,24 @@ spring.datasource.platform: postgres
 spring.jpa.show-sql: true
 spring.jpa.hibernate.ddl-auto: create-drop
 spring.database.driverClassName: org.postgresql.Driver
-spring.datasource.url: jdbc:postgresql://localhost:5432/testx
+spring.datasource.url: jdbc:postgresql://localhost:5432/testdb
 spring.datasource.username: postgres
-spring.datasource.password: x
+spring.datasource.password: postgres
 server.port: 8080
-security:
-  oauth2:
-    client:
-      clientId: 185595875273263
-      clientSecret: 418555ea60a3d234c01007139f5c4f06
-      accessTokenUri: https://graph.facebook.com/oauth/access_token
-      userAuthorizationUri: https://www.facebook.com/dialog/oauth
-      tokenName: oauth_token
-      authenticationScheme: query
-      clientAuthenticationScheme: form
-    resource:
-      userInfoUri: https://graph.facebook.com/me
+keycloak:
+    auth-server-url: http://localhost:8180/auth
+    bearer-only: true
+    credentials:
+        secret: f1b4fffd-17df-4cb5-833b-059d5e3a82aa
+    realm: spring
+    realmKey: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkRS35Z5lblNpvfHr8C6XEGi9vwYew737+LmcpDbxamLVSdNEWi01Gh2TXCWjDsONaUmvQBIVPvJM5dRmnR5lNtYFnRr6vrT/18I/+E/pU/5a9fj0hMyib1HEsKslI6P2os1vunIiHgkDJkePo9tTbRsG71WH7fXM7BSienZO0ZLV1TbgiLj+PSoFLzAHF0P3BXzHIGTqHzs/UHZ/7ub9Oc2vpSXi4IZKGVLQnc9VNZaMu0QWgnqjMCr7CQRORMQ+y4QGw+DFaZ1pBNpZ+bgy6wKSf17U/5Va/CWs/+UjGj50L/1QqertuMcFKqnnQDLhRmnQErLtdpXzop0YQxka/QIDAQAB
+    resource: api
+    securityConstraints:
+    -   securityCollections:
+        -   authRoles:
+            - admin
+            - manager
+            name: spring secured api
+            patterns:
+            - /api/*
+    ssl-required: external

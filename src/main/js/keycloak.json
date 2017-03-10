@@ -1,0 +1,7 @@
+{
+  "realm": "spring",
+  "auth-server-url": "http://localhost:8180/auth",
+  "ssl-required": "external",
+  "resource": "frontend",
+  "public-client": true
+}
