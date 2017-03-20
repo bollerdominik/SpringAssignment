@@ -27,10 +27,12 @@ public class DatabaseLoader implements CommandLineRunner {
     public void run(String... strings) throws Exception {
 
         Employee employeeA = new Employee("Mike","Hunt", Employee.Days.WEDNESDAY, new ArrayList<>());
+        Employee employeeb = new Employee("Moss","lokoo", Employee.Days.MONDAY, new ArrayList<>());
         Shift nightShift = new Shift(Shift.Shifts.EVENING,Arrays.asList(employeeA));
         employeeA.setShifts(Arrays.asList(nightShift));
 
         this.repositoryEmp.save(employeeA);
+        this.repositoryEmp.save(employeeb);
         this.repositoryShift.save(nightShift);
     }
 }
