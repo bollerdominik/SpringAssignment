@@ -1,5 +1,9 @@
 package com.example;
 
+import com.example.domain.Employee;
+import com.example.domain.Shift;
+import com.example.domain.respository.EmployeeRepository;
+import com.example.domain.respository.ShiftRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;

@@ -1,5 +1,6 @@
-package com.example;
+package com.example.domain.respository;
 
+import com.example.domain.Employee;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
