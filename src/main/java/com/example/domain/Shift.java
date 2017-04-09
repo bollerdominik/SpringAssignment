@@ -50,12 +50,5 @@ public class Shift implements Serializable {
         this.shift = shift;
     }
 
-    public List<Employee> getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
-    }
 }
 
