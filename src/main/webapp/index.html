@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Angular 2 QuickStart</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 1. Load libraries -->
+    <link rel="stylesheet" href="css/bootstrap.css"></link>
+    <!-- Polyfill(s) for older browsers -->
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script src="http://localhost:8080/auth/js/keycloak.js"></script>
+    <script src="js/lib/typescript.js"></script>
+    <!-- 2. Configure SystemJS -->
+    <script src="systemjs.config.js"></script>
+    <script src="js/lib/jquery.js"></script>  
+	<script src="js/lib/bootstrap.js"></script> 
+
+    <script>
+    System.config({
+        transpiler: 'typescript',
+        typescriptOptions: { emitDecoratorMetadata: true },
+        packages: {'app': {defaultExtension: 'ts'}},
+        map: { 'app': 'app' }
+      });
+      System.import('app/main').catch(function(err){ console.error(err); });
+      
+      $(function() {
+    	
+    		 var popOverSettings = {
+   				    placement: 'bottom',
+   				    container: 'body',
+   				    html: true,
+   				 	trigger: 'focus',
+   				    selector: '[data-toggle="popover"]', //Sepcify the selector here
+   				    content: function () {
+   				    	return $(this).next().html();
+   				    }
+   				}
+
+   				$('body').popover(popOverSettings);
+      });
+    </script>
+  </head>
+  <!-- 3. Display the application -->
+  <body>
+    <my-app>Loading...</my-app>
+  </body>
+</html>
