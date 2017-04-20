@@ -8,7 +8,8 @@ The SpringAssignment is web application that allows CRUD operations on employees
 
 - Start Keycloak on port 8080
 - Import the Realm App-Realm in to Keyclaok
-- Go to the application directory and start it using sudo mvn install sudo mvn spring-boot:run
+- Create a PostreSQL database testx (specify login in application.properties)
+- Go to the application directory and start it using `sudo mvn install` `sudo mvn spring-boot:run`
 - Access the application at http://localhost:8090/
 - Create a new user or login via Facebook social login
 - A live version of the application can be found at
