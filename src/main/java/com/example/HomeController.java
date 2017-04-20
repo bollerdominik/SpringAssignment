@@ -4,6 +4,7 @@ package com.example;
  * Created by dubsta on 22.02.2017.
  */
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -18,10 +19,7 @@ import org.keycloak.adapters.RefreshableKeycloakSecurityContext;
 import org.keycloak.representations.AccessToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 
 @Controller
@@ -69,25 +67,40 @@ public class HomeController {
     @ResponseBody
     public List<Employee> getEmployees(KeycloakPrincipal<RefreshableKeycloakSecurityContext> principal) {
 
-        AccessToken token = principal.getKeycloakSecurityContext().getToken();
-
-        String id = token.getId();
-        String firstName = token.getGivenName();
-        String lastName = token.getFamilyName();
         return (List<Employee>) repositoryEmp.findAll();
+
+    }
+
+    @RequestMapping(value="/api/shifts",method = RequestMethod.GET)
+    @ResponseBody
+    public List<Shift> getShifts(KeycloakPrincipal<RefreshableKeycloakSecurityContext> principal) {
+
+        return (List<Shift>) repositoryShift.findAll();
     }
 
     @RequestMapping(value="/api/employee/save",method = RequestMethod.POST)
     @ResponseBody
-    public HashMap<String, Object> handleEmployee(Employee emp, HttpServletRequest req) {
+    public HashMap<String, Object> handleEmployee(@RequestParam("shiftIds[]") List<String> to, Employee emp, HttpServletRequest req) {
 
         HashMap<String, Object> map = new HashMap<String, Object>();
-        if(emp.getId() != null)
+        if(emp.getId() != null){
             map.put("message", "Updated employee successfully");
-        else
+        }
+        else{
             map.put("message", "Added employee successfully");
+        }
+
         System.out.println(emp.getFirstName());
         System.out.println(req.getParameter("firstName"));
+
+        if(to != null) {
+            List<Shift> records = new ArrayList<Shift>();
+            for(int i=0;i < to.size(); i++) {
+                Shift shift = repositoryShift.findOne(Long.parseLong(to.get(i)));
+                records.add(shift);
+            }
+            emp.setShifts(records);
+        }
 
         emp = repositoryEmp.save(emp);
 
