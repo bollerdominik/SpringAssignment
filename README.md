@@ -12,7 +12,7 @@ The SpringAssignment is web application that allows CRUD operations on employees
 - Go to the application directory and start it using `sudo mvn install` `sudo mvn spring-boot:run`
 - Access the application at http://localhost:8090/
 - Create a new user or login via Facebook social login
-- A live version of the application can be found at ToDo
+- A live version of the application can be found at boller.site/SpringAssignment
 
 #### ToDo
 - Automated tests of the business logic
