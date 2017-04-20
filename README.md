@@ -1,6 +1,6 @@
 # SpringAssignment
 
-The SpringAssignment is web application that allows CRUD operations on employees entities. The employee has a many to many relation to its shift.
+The SpringAssignment is web application providing a REST API and frontend to allow CRUD operations on employees entities. The employee has a many to many relation to its shift.
 
 #### Technologies used: Spring Framework, Hibernate, OAuth2 (Keycloak), PostgreSQL and AngularJS 2
 
