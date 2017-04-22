@@ -108,12 +108,6 @@ public class HomeController {
         return map;
     }
 
-    @RequestMapping(value="/api/employee/get/{id}",method = RequestMethod.GET)
-    @ResponseBody
-    public Employee handleEmployee(@PathVariable("id") long id) {
-
-        return repositoryEmp.findOne(id);
-    }
 
     @RequestMapping(value="/api/employee/delete/{id}",method = RequestMethod.GET)
     @ResponseBody

@@ -1,10 +1,12 @@
 package com.example.domain;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Data;
 import lombok.Setter;
+
 import javax.persistence.*;
-import java.io.Serializable;
+
 import java.util.List;
 
 /**
@@ -12,17 +14,17 @@ import java.util.List;
  */
 @Data
 @Entity
-public class Employee implements Serializable {
-
-
-    private static final long serialVersionUID = 1L;
-    private @Id @GeneratedValue Long id;
+public class Employee  {
+    /**
+     *
+     */
+    private @Id @GeneratedValue(strategy=GenerationType.IDENTITY) Long id;
     private String firstName;
     private String lastName;
     public enum Days{MONDAY,TUESDAY, WEDNESDAY, THURSDAY, FRIDAY}
     private Days day;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(name = "employee_shift", joinColumns = @JoinColumn(name = "employee_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "shift_id", referencedColumnName = "id"))
     @Setter @JsonManagedReference
     private List<Shift> shifts;

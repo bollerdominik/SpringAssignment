@@ -1,12 +1,12 @@
 package com.example.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Data;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import java.io.Serializable;
+
+import javax.persistence.*;
+
+
 import java.util.List;
 
 /**
@@ -14,20 +14,21 @@ import java.util.List;
  */
 @Data
 @Entity
-public class Shift implements Serializable {
+public class Shift {
+    /**
+     *
+     */
 
 
-    private static final long serialVersionUID = 1L;
-
-    private @Id @GeneratedValue Long id;
+    private @Id @GeneratedValue(strategy=GenerationType.IDENTITY) Long id;
     private Shifts shift;
-    public enum Shifts{EVENING,NIGHT, MORNING};
+    public enum Shifts{EVENING,NIGHT, MORNING, DAY};
 
     @ManyToMany(mappedBy = "shifts")
     @JsonBackReference
     private List<Employee> employees;
 
-    private Shift() {}
+    public Shift() {}
 
     public Shift(Shifts shift, List<Employee> employees) {
         this.shift = shift;
@@ -50,5 +51,11 @@ public class Shift implements Serializable {
         this.shift = shift;
     }
 
-}
+    public List<Employee> getEmployees() {
+        return employees;
+    }
 
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+    }
+}
