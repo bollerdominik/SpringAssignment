@@ -12,9 +12,8 @@ The SpringAssignment is web application providing a REST API and frontend to all
 - Go to the application directory and start it using `sudo mvn install` `sudo mvn spring-boot:run`
 - Access the application at http://localhost:8090/
 - Create a new user or login via Facebook social login
-- A live version of the application can be found at http://boller.site/SpringAssignment
+
+A live version of the application can be found at http://boller.site:8080/SpringApp (Login with user "q" password "q")
 
 #### ToDo
 - Automated tests of the business logic
-- Upload live version to boller.site
-- Export and add Keycloak Realm
