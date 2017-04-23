@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/bollerdominik/SpringAssignment.svg?branch=master)](https://travis-ci.org/bollerdominik/SpringAssignment)
 # SpringAssignment
 
 The SpringAssignment is web application providing a REST API and frontend to allow CRUD operations on employees entities. The employee has a many to many relation to its shift.
