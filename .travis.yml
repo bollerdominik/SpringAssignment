@@ -11,6 +11,3 @@ install:
   - ./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 before_script:
   - psql -c 'create database testx;' -U postgres
-script: 
-  - sudo mvn install
-  - sudo mvn test
