@@ -4,7 +4,7 @@ The SpringAssignment is web application providing a REST API and frontend to all
 
 #### Technologies used: Spring Framework, Hibernate, OAuth2 (Keycloak), PostgreSQL and AngularJS 2
 
-### Installation (only tested on Linux):
+### Installation on Linux:
 
 - Start Keycloak on port 8080
 - Import the Realm App-Realm in to Keyclaok
