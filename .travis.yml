@@ -4,4 +4,6 @@ services:
   - postgresql
 before_script:
   - psql -c 'create database testx;' -U postgres
-script: mvn clean test
+script: 
+  - sudo mvn install
+  - sudo mvn test
