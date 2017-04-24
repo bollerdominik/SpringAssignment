@@ -162,9 +162,8 @@ public class DemoApplicationTests {
 	@Test
 	public void t4deleteEmployee() throws Exception {
 
-		mockMvc.perform(get("/api/employee/delete/1"))
-				.andExpect(status().isOk())
-				.andExpect(content().contentType(contentType));
+		mockMvc.perform(delete("/api/employees/1"))
+				.andExpect(status().isNoContent());
 
 		// Verify Mark Hunt was removed
 		mockMvc.perform(get("/api/employees"))

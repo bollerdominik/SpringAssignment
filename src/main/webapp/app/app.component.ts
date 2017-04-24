@@ -187,16 +187,15 @@ export class AppComponent implements OnInit {
 
         let options = new RequestOptions({ headers });
         
-    	this.http.get("http://localhost:8090/api/employee/delete/"+id, options)
-    		.map(res => res.json())
-          	.subscribe(data => {
-	    		$('#successMsg').find('span').html(data.message);
-	            $('#successMsg').show();
-	            setTimeout(function() { $('#successMsg').hide() }, 3000);
-	            this.reloadData();
-	            $('#confirm').modal('hide');
-	            this.emp = {};
-        	},
+    	this.http.delete("http://localhost:8090/api/employees/"+id, options)
+    		.subscribe((ok)=>{
+					$('#successMsg').find('span').html("Deleted Employee Successfully");
+					$('#successMsg').show();
+					setTimeout(function() { $('#successMsg').hide() }, 3000);
+					this.reloadData();
+					$('#confirm').modal('hide');
+					this.emp = {};
+    	},
             error => console.log(error));
     };
 

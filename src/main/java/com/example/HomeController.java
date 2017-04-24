@@ -107,16 +107,5 @@ public class HomeController {
         map.put("emp", emp);
         return map;
     }
-
-
-    @RequestMapping(value="/api/employee/delete/{id}",method = RequestMethod.GET)
-    @ResponseBody
-    public Object deleteEmployee(@PathVariable("id") long id) {
-
-        repositoryEmp.delete(id);
-        HashMap<String, Object> map = new HashMap<String, Object>();
-        map.put("message", "Delete employee Successfully");
-        return map;
-    }
 }
 
