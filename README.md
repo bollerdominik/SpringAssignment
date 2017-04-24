@@ -15,3 +15,9 @@ The SpringAssignment is web application providing a REST API and frontend to all
 - Create a new user or login via Facebook social login
 
 A live version of the application can be found at http://boller.site:8080/SpringApp (Login with user "q" password "q")
+
+#### Resources:
+
+https://github.com/keycloak/keycloak/tree/master/examples/demo-template/angular-product-app
+
+https://spring.io/guides/tutorials/react-and-spring-data-rest/
