@@ -63,6 +63,7 @@ public class HomeController {
         return shift;
     }
 
+    // Done this way so I can retrieve a JSON with the shift included
     @RequestMapping(value="/api/employees",method = RequestMethod.GET)
     @ResponseBody
     public List<Employee> getEmployees(KeycloakPrincipal<RefreshableKeycloakSecurityContext> principal) {
