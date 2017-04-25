@@ -142,20 +142,35 @@ public class DemoApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$").isNotEmpty());
 
+		// Verify it was added
 		mockMvc.perform(get("/api/employees"))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(contentType))
-				.andExpect(jsonPath("[2].shifts",hasSize(2)));
+				.andExpect(jsonPath("[2].shifts",hasSize(2)))
+                .andExpect(jsonPath("[2].shifts[1].id",is(3)));
 
 		// Assign Shift
 		mockMvc.perform(put("/api/employees/"+3+"/shifts/"+4))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$").isNotEmpty());
 
+        // Verify it was added
 		mockMvc.perform(get("/api/employees"))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(contentType))
-				.andExpect(jsonPath("[2].shifts",hasSize(3)));
+				.andExpect(jsonPath("[2].shifts",hasSize(3)))
+                .andExpect(jsonPath("[2].shifts[1].id",is(3)));;
+
+
+        // Verify it was added to shift
+        mockMvc.perform(get("/api/shifts/"+3+"/employees/"+3))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").isNotEmpty());
+
+        // Verify it was added to shift
+        mockMvc.perform(get("/api/shifts/"+4+"/employees/"+3))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").isNotEmpty());
 
 	}
 
