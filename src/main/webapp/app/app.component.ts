@@ -128,24 +128,33 @@ export class AppComponent implements OnInit {
 
         let options = new RequestOptions({ headers });
     	
-    	this.http.get("http://localhost:8090/api/employee/get/"+id, options)
+    	this.http.get("http://localhost:8090/api/employees/"+id, options)
     		.map(res => res.json())
           	.subscribe(data => {
           		console.log(data);
 	        	this.emp = data;
-	        	console.log(data.shifts);
+	        	console.log(data._links.shifts);
+
+				this.http.get(data._links.shifts.href, options)
+                    .map(ires => ires.json())
+                    .subscribe(idata => {
+						console.log(idata._embedded.shifts);
+
+						this.emp.shiftIds = [];
+						this.selectedValues= [];
+						if(idata._embedded.shifts != null && idata._embedded.shifts.length > 0) {
+							for(let i=0; i < idata._embedded.shifts.length; i++) {
+								let shift = idata._embedded.shifts[i].shift;
+
+								this.selectedValues.push(idata._embedded.shifts[i].id);
+								this.emp.shiftIds.push(idata._embedded.shifts[i].id);
+								$('#shiftIds').find('option:contains("'+shift+'")').attr('selected', 'selected');
+							}
+						}
+
+					},error => console.log(error));
 	        	
-	        	this.emp.shiftIds = [];
-	        	this.selectedValues= [];
-	        	if(data.shifts != null && data.shifts.length > 0) {
-	        		for(let i=0; i < data.shifts.length; i++) {
-	        			let shift = data.shifts[i].shift;
-	        			
-	        			this.selectedValues.push(data.shifts[i].id);
-	        			this.emp.shiftIds.push(data.shifts[i].id);
-	        			$('#shiftIds').find('option:contains("'+shift+'")').attr('selected', 'selected');
-	        		}
-	        	}
+
 	        	
 	        	this.updateSelectList();
 	        	
