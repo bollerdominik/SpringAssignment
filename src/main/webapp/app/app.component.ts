@@ -56,11 +56,11 @@ export class AppComponent implements OnInit {
 
         let options = new RequestOptions({ headers });
 
-        this.http.get("http://localhost:8090/api/employees", options)
+        this.http.get("http://boller.site:8080/SpringApp/api/employees", options)
           .map(res => res.json())
           .subscribe(employees => this.employees = employees,
             error => console.log(error));
-        this.http.get("http://localhost:8090/api/shifts", options)
+        this.http.get("http://boller.site:8080/SpringApp/api/shifts", options)
           .map(res => res.json())
           .subscribe(shifts => this.shifts = shifts,
             error => console.log(error));
@@ -98,7 +98,7 @@ export class AppComponent implements OnInit {
 		    
 			var data = $.param({firstName: emp.firstName, lastName: emp.lastName, day: emp.day, shiftIds: emp.shiftIds, id: emp.id});
 	
-			this.http.post("http://localhost:8090/api/employee/save", data, options)
+			this.http.post("http://boller.site:8080/SpringApp/api/employee/save", data, options)
 				.map(res => res.json())
 	          	.subscribe(data => {
 	          		$('#successMsg').find('span').html(data.message);
@@ -127,7 +127,7 @@ export class AppComponent implements OnInit {
 
         let options = new RequestOptions({ headers });
     	
-    	this.http.get("http://localhost:8090/api/employees/"+id, options)
+    	this.http.get("http://boller.site:8080/SpringApp/api/employees/"+id, options)
     		.map(res => res.json())
           	.subscribe(data => {
           		console.log(data);
@@ -195,7 +195,7 @@ export class AppComponent implements OnInit {
 
         let options = new RequestOptions({ headers });
         
-    	this.http.delete("http://localhost:8090/api/employees/"+id, options)
+    	this.http.delete("http://boller.site:8080/SpringApp/api/employees/"+id, options)
     		.subscribe((ok)=>{
 					$('#successMsg').find('span').html("Deleted Employee Successfully");
 					$('#successMsg').show();
