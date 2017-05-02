@@ -45,7 +45,6 @@ export class AppComponent implements OnInit {
   
   //Reload Employees data
   reloadData() {
-    //angular dont have http interceptor yet
 
     this.kc.getToken()
       .then(token => {

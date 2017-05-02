@@ -18,6 +18,6 @@ A live version of the application can be found at http://boller.site:8080/Spring
 
 #### Resources:
 
-https://github.com/keycloak/keycloak/tree/master/examples/demo-template/angular-product-app
+https://github.com/keycloak/keycloak/tree/master/examples/demo-template/angular2-product-app/src/
 
 https://spring.io/guides/tutorials/react-and-spring-data-rest/
