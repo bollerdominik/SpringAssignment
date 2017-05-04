@@ -7,8 +7,8 @@ The SpringAssignment is web application providing a REST API and frontend to all
 
 ### Installation on Linux:
 
+- Import the Realm App-Realm in to Keyclaok `bin/standalone.sh -Dkeycloak.migration.action=import -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.file=app-realm.json -Dkeycloak.migration.strategy=OVERWRITE_EXISTING`
 - Start Keycloak on port 8080
-- Import the Realm App-Realm in to Keyclaok
 - Create a PostreSQL database testx (specify login in application.properties)
 - Go to the application directory and start it using `sudo mvn install` `sudo mvn spring-boot:run`
 - Access the application at http://localhost:8090/
